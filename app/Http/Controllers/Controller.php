@@ -58,14 +58,19 @@ class Controller extends BaseController
     /***  Metodo para guardar el path de las tablas de bingo  ***/
     public function getPathTableBingo(){
         $files = Storage::disk('public')->allFiles('tables');
-
+        $i = 0;
         foreach ($files as $file){
+            $i++;
             $pathFirst = TableBingo::where('path', $file)->first();
 
             if ( !$pathFirst ){
                 TableBingo::create([
                     'path' => $file
                 ]);
+            }
+
+            if ($i === 10){
+                break;
             }
         }
 
