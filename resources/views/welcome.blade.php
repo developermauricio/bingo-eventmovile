@@ -18,7 +18,8 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
-        </style>
+        </style> 
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     </head>
     <body class="antialiased">
         @yield('content')
