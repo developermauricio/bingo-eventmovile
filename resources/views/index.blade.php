@@ -15,10 +15,10 @@
 
                 <form class="form" method="POST" action="{{route('download')}}">
                     @csrf
-                    
+
                     <div class="mb-3">
                         <label for="email" class="form-label">Correo electrónico</label>
-                        <input type="email" class="form-control" id="email" placeholder="Ingrese su correo" required aria-describedby="emailHelp">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese su correo" required aria-describedby="emailHelp">
                         <div id="emailHelp" class="form-text"></div>
                     </div>
 

@@ -29,27 +29,27 @@ class Controller extends BaseController
         $user = ( new FastExcel )->import( $data, function($line) {
             $name = $line['Nombre'] ? $line['Nombre'] : 'New';
             $lastname = $line['Apellido'] ? $line['Apellido'] : 'User';
-            $email = $line['email'] ? $line['email'] : 'exampe@gmail.com';
+            $email = $line['Email'];
 
             if ( $this->validateDataUser( $email) ){
                 return User::create([
-                    'name' => $name + $lastname,
-                    'email' => $email,
+                    'name' => $name .' '. $lastname,
+                    'email' => strtolower($email),
                 ]);
             }
-            
+
         });
-        
-        return response()->json('ok');        
+
+        return response()->json('ok');
     }
 
-    public function validateDataUser( $email ) {        
+    public function validateDataUser( $email ) {
         if (!$email) return false;
 
         $currentUser = User::whereEmail($email)->first();
 
         if ( $currentUser ) {
-            return false;            
+            return false;
         } else {
             return true;
         }
@@ -74,7 +74,7 @@ class Controller extends BaseController
 
     /*  Metodo para realizar la descarga de la tabla de bingo */
     public function downloadTableBingo(Request $request){
-        $userEmail = $request->get('email');
+        $userEmail = strtolower($request->get('email'));
 
         $currentUser = User::whereEmail($userEmail)->first();
         if ( !$currentUser ) {
