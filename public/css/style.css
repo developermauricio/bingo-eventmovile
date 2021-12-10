@@ -12,12 +12,18 @@
 }
 
 .pwidth {
-    width: 60vh;
     color: gray;
 }
 
+.content-logo img {
+    width: 100%;
+    height: 50vh;
+    margin-bottom: 3rem;
+}
+
+
 @media (max-width: 767.98px) { 
-    .pwidth {
-        width: 40vh;
+    .content-logo img {
+        height: auto;
     }
 }
