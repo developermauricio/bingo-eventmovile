@@ -104,4 +104,8 @@ class Controller extends BaseController
         }
     }
 
+    public function descargas(){
+        $descargas = TableBingo::where('download', 1)->get();
+        return response()->json(['data' => $descargas]);
+    }
 }
