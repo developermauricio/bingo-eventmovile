@@ -83,7 +83,8 @@ class Controller extends BaseController
 
         $tableUser = TableBingo::where('email', $userEmail)->first();
         if ( $tableUser ){
-            return back()->with('error', 'El usuario con este correo electrónico ya realizo la descarga del archivo');
+//            return back()->with('error', 'El usuario con este correo electrónico ya realizo la descarga del archivo');
+            return Storage::disk('public')->download($tableUser->path);
         }
 
         $tableBingo = TableBingo::inRandomOrder()->where('download', false)->first();
